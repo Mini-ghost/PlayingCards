@@ -75,8 +75,8 @@ html {
   font-size: 2.25rem;
 }
 
-.fz-20 {
-  font-size: 1.25rem;
+.fz-24 {
+  font-size: 1.5rem;
 }
 
 .fz-12 {
@@ -85,7 +85,7 @@ html {
 
 .containt {
   max-width: 1366px;
-  width: 95%;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -97,14 +97,46 @@ html {
   flex-wrap: wrap;
   margin-left: -0.5vw;
   margin-right: -0.5vw;
+  font-family: 'Source Serif Pro', serif;
+}
+
+@media (max-width: 767.98px) {
+  .card {
+    margin-left: -1vw;
+    margin-right: -1vw;
+  }
 }
 
 .card-containt {
+  position: relative;
+  top: 0;
   width: calc(16.667% - 1vw);
   margin: 0.5vw;
   cursor: pointer;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+@media (max-width: 1365.98px) {
+  .card-containt {
+    width: calc(20% - 1vw);
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .card-containt {
+    width: calc(25% - 1vw);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .card-containt {
+    width: calc(50% - 2vw);
+    margin: 1vw;
+  }
 }
 
 .card-containt--active .card-face__front {
@@ -115,6 +147,10 @@ html {
 .card-containt--active .card-face__back {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
+}
+
+.card-containt:hover {
+  top: -0.5vw;
 }
 
 .card-face {
@@ -190,13 +226,13 @@ html {
 }
 
 .card-face__corner--top {
-  top: 15px;
-  left: 15px;
+  top: 10px;
+  left: 10px;
 }
 
 .card-face__corner--bottom {
-  bottom: 15px;
-  right: 15px;
+  bottom: 10px;
+  right: 10px;
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
@@ -223,6 +259,14 @@ html {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   font-weight: bold;
+}
+
+.timer {
+  position: fixed;
+  top: 1vw;
+  left: 1vw;
+  color: rgba(255, 255, 255, 0.75);
+  z-index: 9;
 }
 
 /*# sourceMappingURL=style.css.map */
