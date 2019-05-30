@@ -13,8 +13,11 @@
       <main>
         <section>
           <div class="containt">
-            <timer></timer>
             <cards></cards>
+            <div class="tool">
+              <timer></timer>
+              <controller :is-start="isStart"></controller>
+            </div>
           </div>
         </section>
       </main>
@@ -47,7 +50,18 @@
       </div>
     </template>
     <template id="timer">
-      <div class="timer fz-72">{{timeText.join(':')}}</div>
+      <div class="timer">
+        <div class="timer-text fz-72">{{timeText.join(':')}}</div>
+      </div>
+    </template>
+    <template id="controller">
+      <div class="controller">
+        <div class="controller-containt fz-14">
+          <button class="controller__button controller__button--start" v-if="!isStart" @click="gameContorHandler('start')">開始遊戲</button>
+          <button class="controller__button controller__button--stop" v-if="isStart" @click="gameContorHandler('stop')">遊戲暫停</button>
+          <button class="controller__button controller__button--reset" v-if="isStart" @click="gameContorHandler('reset')">重新開始</button>
+        </div>
+      </div>
     </template>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
     <script src="js/index.js"></script>

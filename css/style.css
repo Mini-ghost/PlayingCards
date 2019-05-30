@@ -79,8 +79,8 @@ html {
   font-size: 1.5rem;
 }
 
-.fz-12 {
-  font-size: 0.75rem;
+.fz-14 {
+  font-size: 0.875rem;
 }
 
 .containt {
@@ -261,12 +261,57 @@ html {
   font-weight: bold;
 }
 
-.timer {
+.tool {
   position: fixed;
   top: 1vw;
   left: 1vw;
-  color: rgba(255, 255, 255, 0.75);
   z-index: 9;
+}
+
+.timer, .controller {
+  margin: 2rem 0;
+}
+
+.timer {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.controller__button + .controller__button {
+  margin-left: 0.5vw;
+}
+
+.controller__button {
+  background-color: transparent;
+  border: 2px solid;
+  font: inherit;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+  padding: 12.5px 20px;
+  border-radius: 5vw;
+  opacity: 0.75;
+  color: white;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.controller__button--start {
+  border-color: orange;
+  background-color: orange;
+}
+
+.controller__button--stop {
+  border-color: #ed4747;
+  background-color: #ed4747;
+}
+
+.controller__button--reset {
+  border-color: gray;
+  background-color: gray;
+}
+
+.controller__button:hover {
+  opacity: 1;
 }
 
 /*# sourceMappingURL=style.css.map */
