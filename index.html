@@ -13,10 +13,10 @@
       <main>
         <section>
           <div class="containt">
-            <cards :status="isStart" :type="type"></cards>
+            <cards :status="inGame" :type="type"></cards>
             <div class="tool">
-              <timer :status="isStart" :type="type" @status-change="statusChangeHandler"></timer>
-              <controller :status="isStart" @status-change="statusChangeHandler"></controller>
+              <timer :status="inGame" :type="type" @status-change="statusChangeHandler"></timer>
+              <controller :status="inGame" :type="type" @status-change="statusChangeHandler"></controller>
             </div>
           </div>
         </section>
@@ -57,9 +57,7 @@
     <template id="controller">
       <div class="controller">
         <div class="controller-containt fz-14">
-          <button class="controller__button controller__button--start" v-if="!status" @click="gameContorHandler('start')">開始遊戲</button>
-          <button class="controller__button controller__button--stop" v-else="v-else" @click="gameContorHandler('stop')">遊戲暫停</button>
-          <button class="controller__button controller__button--reset" @click="gameContorHandler('reset')">重新開始</button>
+          <button class="controller__button" v-for="btn in buttonComputed" :class="'controller__button--' + btn.type" @click="gameContorHandler(btn.type)">{{btn.text}}</button>
         </div>
       </div>
     </template>

@@ -1,15 +1,5 @@
 ; (function (Vue) {
 
-	// 子組件傳遞資料用 bus
-	Object.defineProperty(Vue.prototype, '$bus', {
-		get() {
-			return this.$root.bus;
-		}
-	});
-
-	
-	var bus = new Vue()
-
 	// 卡牌模組 --------------------------
 	Vue.component('cards', {
 		template: '#cards',
@@ -40,7 +30,7 @@
 		},
 		mounted() {
 			this.cardsData = this.cardsCreateHandler()
-			this.$bus.$on('resetCards', this.resetCardHanler)
+			// this.$bus.$on('resetCards', this.resetCardHanler)
 
 		},
 		methods: {
@@ -194,7 +184,8 @@
 		},
 		watch: {
 			isGameOver() {
-				this.$parent.isStart = false
+				if (!this.isGameOver) return
+				this.$parent.inGame = false
 				this.$parent.type = 'stop'
 			},
 			type() {
@@ -224,9 +215,6 @@
 				timerId: new Number
 			}
 		},
-		mounted() {
-			// this.$bus.$on('timeStop', this.resetCardHanler)
-		},
 		methods: {
 			timerHandler() {
 				var sec = this.sec,
@@ -249,12 +237,10 @@
 				else {
 					clearTimeout(this.timerId)
 					if (this.type === 'stop') return
-				/* --- 如果是重新設定，執行以下動作 --- */
+					/* --- 如果是重新設定，執行以下動作 --- */
 					// 計時器初始化
 					this.sec = 0
 					this.timeText = ['00', '00']
-					// 所有牌面蓋上，洗牌
-					this.$bus.$emit('resetCards', false)
 				}
 			}
 		}
@@ -268,6 +254,19 @@
 				type: Boolean,
 				required: true
 			},
+			type: {
+				type: String,
+				required: true
+			}
+		},
+		data() {
+			return {
+				buttonData: [
+					{ text: '開始遊戲', type: 'start'},
+					{ text: '遊戲暫停', type: 'stop'},
+					{ text: '重新開始', type: 'reset'},
+				]
+			}
 		},
 		methods: {
 			gameContorHandler(res) {
@@ -277,35 +276,40 @@
 						this.$emit('status-change', true, res)
 						break
 					// 重新開始：時間暫停				
-					case 'stop': 
 					case 'reset': 
-						console.log('發出事件')
+					case 'stop': 
 						this.$emit('status-change', false, res)			
 						break	
 				}
 			}
 		},
-		
-
+		computed: {
+			buttonComputed() {
+				this.buttonData.forEach(obj => {
+					if (obj.type === 'reset') obj.show = true
+					else if (obj.type === 'start') obj.show = !this.status
+					else if(obj.type === 'stop') obj.show = this.status
+				})
+				return this.buttonData.filter(obj => {
+					return obj.show 
+				})
+			}
+		}
 	})
 
-
-	// Vue 母體 --------------------------
+	// Vue 母體 -------------------------
 	var vm = new Vue({
 		el: '#app',
 		data() {
 			return {
-				isStart: false,
-				type: 'reset',
-				bus: bus
+				inGame: false,
+				type: 'stop'
 			}
 		},
 		methods: {
-			statusChangeHandler(status, type) {
-				console.log('改變狀態')
+			statusChangeHandler(inGame, type) {
+				this.inGame = inGame
 				this.type = type
-				this.isStart = status
-				console.log(this.type, this.isStart)
 			}
 		}
 	})
