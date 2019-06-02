@@ -15,7 +15,7 @@
           <div class="containt">
             <cards :status="inGame" :type="type"></cards>
             <div class="tool">
-              <timer :status="inGame" :type="type" @status-change="statusChangeHandler"></timer>
+              <counter :status="inGame" :type="type" @status-change="statusChangeHandler"></counter>
               <controller :status="inGame" :type="type" @status-change="statusChangeHandler"></controller>
             </div>
           </div>
@@ -49,9 +49,9 @@
         </div>
       </div>
     </template>
-    <template id="timer">
-      <div class="timer">
-        <div class="timer-text fz-72">{{timeText.join(':')}}</div>
+    <template id="counter">
+      <div class="counter">
+        <div class="counter-text fz-72">{{timeText.join(':')}}</div>
       </div>
     </template>
     <template id="controller">

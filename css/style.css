@@ -95,6 +95,8 @@ html {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  margin-top: 10vw;
+  margin-bottom: 10vw;
   margin-left: -0.5vw;
   margin-right: -0.5vw;
   font-family: 'Source Serif Pro', serif;
@@ -139,14 +141,18 @@ html {
   }
 }
 
-.card-containt--active .card-face__front {
+.card-containt.card-containt--active .card-face__front {
   -webkit-transform: rotateY(0);
   transform: rotateY(0);
 }
 
-.card-containt--active .card-face__back {
+.card-containt.card-containt--active .card-face__back {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
+}
+
+.card-containt.card-containt--active:hover {
+  top: 0;
 }
 
 .card-containt:hover {
@@ -268,11 +274,11 @@ html {
   z-index: 9;
 }
 
-.timer, .controller {
+.counter, .controller {
   margin: 2rem 0;
 }
 
-.timer {
+.counter {
   color: rgba(255, 255, 255, 0.75);
 }
 

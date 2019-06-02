@@ -30,8 +30,6 @@
 		},
 		mounted() {
 			this.cardsData = this.cardsCreateHandler()
-			// this.$bus.$on('resetCards', this.resetCardHanler)
-
 		},
 		methods: {
 			cardsSymbolsHandler(num) {
@@ -196,8 +194,8 @@
 	})
 	
 	// 計時器模組 ------------------------
-	Vue.component('timer', {
-		template: '#timer',
+	Vue.component('counter', {
+		template: '#counter',
 		props: {
 			status: {
 				type: Boolean,
