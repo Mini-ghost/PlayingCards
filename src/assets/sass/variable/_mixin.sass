@@ -1,0 +1,23 @@
+@mixin flexCenter
+	display: flex
+	justify-content: center
+	align-items: center
+
+@mixin scrollbar($color: orange)
+	overflow-x: hidden
+	overflow-y: auto !important
+	&::-webkit-scrollbar
+		background-color: transparent
+		width: 6px
+	&::-webkit-scrollbar-thumb
+		background-color: lighten($color, 10%)
+	&::-webkit-scrollbar-track
+		width: 6px
+		background-color: trasnparent
+
+@mixin isoScrolling
+	-webkit-overflow-scrolling: touch
+
+@mixin isoScrollingChild
+	-webkit-overflow-scrolling: auto
+	
