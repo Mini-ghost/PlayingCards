@@ -3,7 +3,7 @@
     main
       section
         .containt
-          Cards(:status="inGame" :type="type")
+          Cards(:status="inGame" :type="type" @status-change="statusChangeHandler")
         .tool
           Counter(:status="inGame", :type="type" @status-change="statusChangeHandler")
           Controller(:status="inGame", :type="type", @status-change="statusChangeHandler")

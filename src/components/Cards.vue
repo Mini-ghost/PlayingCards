@@ -1,29 +1,30 @@
 <template lang="pug">
-.card
-  .card-containt(v-for="(item, index) in cardsData", @click="selectHandler(item)", :class="item.active? 'card-containt--active' : ''")
-    .card-face
-      .card-face__front(:class="['card-face__front--'+item.name, 'card-face__front--'+item.color]")
-        .card-face__wrap
-          .card-face__corner.card-face__corner--top.fz-24
-            .card-num {{item.text}}
-          .card-face__corner.card-face__corner--bottom.fz-24
-            .card-num {{item.text}}
-          .card-face__center(v-if="item.symbols")
-            .card-face__symbol(v-for="symbol in item.symbols",
-                                :style="'left:' + symbol.left +'; top:' + symbol.top + ';'",
-                                :class="[{'card-face__symbol--flip' : symbol.flip}, item.text === 'A'? 'fz-72' : 'fz-36'] ")
-          .card-face__center(v-else)
-            .card-face__text.fz-52 {{item.text}}
-      .card-face__back
-        .card-face__wrap
+  transition-group(class="card", tag="div", name="shuffle")
+    .card-containt( v-for="(item, index) in cardsData", 
+                    @click="selectHandler(item)", 
+                    :class="item.active? 'card-containt--active' : ''", 
+                    :key="item.name + item.text")
+      .card-face
+        .card-face__front(:class="['card-face__front--'+item.name, 'card-face__front--'+item.color]")
+          .card-face__wrap
+            .card-face__corner.card-face__corner--top.fz-24
+              .card-num {{item.text}}
+            .card-face__corner.card-face__corner--bottom.fz-24
+              .card-num {{item.text}}
+            .card-face__center(v-if="item.symbols")
+              .card-face__symbol(v-for="symbol in item.symbols",
+                                  :style="'left:' + symbol.left +'; top:' + symbol.top + ';'",
+                                  :class="[{'card-face__symbol--flip' : symbol.flip}, item.text === 'A'? 'fz-72' : 'fz-36'] ")
+            .card-face__center(v-else)
+              .card-face__text.fz-52 {{item.text}}
+        .card-face__back
+          .card-face__wrap
 </template>
 
 <style lang="sass">
   @import ../assets/sass/variable/include
 
   .card
-    display: flex
-    flex-wrap: wrap
     margin: 
       top: 10vw
       bottom: 10vw
@@ -34,6 +35,7 @@
       margin-left: -1vw
       margin-right: -1vw
     &-containt
+      float: left
       position: relative
       top: 0
       width: calc(16.667% - 1vw)
@@ -125,6 +127,11 @@
         left: 50%
         transform: translate(-50%, -50%)
         font-weight: bold
+
+  .shuffle
+    &-move
+      transition: transform 1s
+
 </style>
 
 <script>
@@ -300,10 +307,11 @@
         this.isGameOver = this.cardsData.every(obj => { return obj.active })
       },
       resetCardHanler(res) {
+        let needDelay = this.cardsData.some(obj=>(obj.active === true))
         this.cardsData.forEach(obj => { obj.active = res })
-        setTimeout(() => { this.cardsShuffleHandler(this.cardsData) }, 500)
+        setTimeout(() => { this.cardsShuffleHandler(this.cardsData) }, needDelay? 500 : 0)
         this.activeCards = new Array
-        this.$parent.type = 'reset'
+        this.$emit('status-change', false, 'stop')
       }
     },
     watch: {

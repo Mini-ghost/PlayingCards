@@ -58,7 +58,7 @@ export default {
 			buttonData: [
 				{ text: '開始遊戲', type: 'start'},
 				{ text: '遊戲暫停', type: 'stop'},
-				{ text: '重新開始', type: 'reset'},
+				{ text: '重新洗牌', type: 'reset'},
 			]
 		}
 	},
