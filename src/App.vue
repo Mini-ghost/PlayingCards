@@ -2,11 +2,17 @@
   #app
     main
       section
-        .containt
-          Cards(:status="inGame" :type="type" @status-change="statusChangeHandler")
         .tool
-          Counter(:status="inGame", :type="type" @status-change="statusChangeHandler")
-          Controller(:status="inGame", :type="type", @status-change="statusChangeHandler")
+          Counter(:status="inGame", 
+                  :type="type", 
+                  @status-change="statusChangeHandler")
+          Controller( :status="inGame", 
+                      :type="type", 
+                      @status-change="statusChangeHandler")
+        .containt
+          Cards(:status="inGame", 
+                :type="type", 
+                @status-change="statusChangeHandler")
 </template>
 
 <script>
@@ -60,6 +66,8 @@ html
     font-size: rem(24px)
   &-14
     font-size: rem(14px)
+  &-12
+    font-size: rem(12px)
 
 .containt
   max-width: 1366px
@@ -71,5 +79,9 @@ html
   top: 1vw
   left: 1vw
   z-index: 9
+  @media (max-width: 767.89px)
+    position: relative
+    top: 0
+    left: 0
 
 </style>

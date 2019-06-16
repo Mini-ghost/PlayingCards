@@ -1,9 +1,13 @@
 <template lang="pug">
 .controller
-	.controller-containt.fz-14
-		button.controller__button(v-for="btn in buttonComputed", 
-		:class="'controller__button--' + btn.type", 
-		@click="gameContorHandler(btn.type)") {{btn.text}}
+	.controller-containt
+		//- .controller-content.fz-12
+			button.controller__button(v-for="leavle in leavles") {{leavle.text}}
+		.controller-content.fz-14
+			button.controller__button(v-for="btn in buttonComputed", 
+			:class="'controller__button--' + btn.type", 
+			@click="gameContorHandler(btn.type)") {{btn.text}}
+
 
 </template>
 
@@ -15,17 +19,23 @@
 	background-color: $color
 
 .controller
+	@media (max-width: 767.89px)
+		text-align: center
+	&-content + &-content
+		margin-top: 16px
 	&__button + &__button
 		margin-left: 0.5vw
+		@media (max-width: 767.89px)
+			margin-left: 2vw
 	&__button
-		background-color: transparent
+		background-color: rgba(black, 0.5)
 		border: 2px solid
 		font: inherit
 		cursor: pointer
 		font-weight: bold
 		outline: none
 		padding: 12.5px 20px
-		border-radius: 5vw
+		border-radius: 50px
 		opacity: 0.75
 		color: white  
 		box-shadow: 0 0 10px rgba(black, 0.5)
@@ -59,6 +69,11 @@ export default {
 				{ text: '開始遊戲', type: 'start'},
 				{ text: '遊戲暫停', type: 'stop'},
 				{ text: '重新洗牌', type: 'reset'},
+			],
+			leavles: [
+				{ rank: 'easily', text: '簡單', num: 3},
+				{ rank: 'general', text: '中等', num: 6},
+				{ rank: 'difficult', text: '困難', num: 13}
 			]
 		}
 	},

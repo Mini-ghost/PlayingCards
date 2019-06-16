@@ -19,6 +19,8 @@
               .card-face__text.fz-52 {{item.text}}
         .card-face__back
           .card-face__wrap
+    .card-clear(key='clear')
+
 </template>
 
 <style lang="sass">
@@ -31,6 +33,7 @@
       left: -0.5vw
       right: -0.5vw
     font-family: 'Source Serif Pro', serif
+    
     @media (max-width: 767.98px)
       margin-left: -1vw
       margin-right: -1vw
@@ -127,10 +130,12 @@
         left: 50%
         transform: translate(-50%, -50%)
         font-weight: bold
-
+    &-clear
+      clear: both
+      
   .shuffle
     &-move
-      transition: transform 1s
+      transition: transform 0.5s
 
 </style>
 
@@ -311,14 +316,14 @@
         this.cardsData.forEach(obj => { obj.active = res })
         setTimeout(() => { this.cardsShuffleHandler(this.cardsData) }, needDelay? 500 : 0)
         this.activeCards = new Array
-        this.$emit('status-change', false, 'stop')
+        this.$emit('status-change', false, 'shuffle')
       }
     },
     watch: {
       isGameOver() {
         if (!this.isGameOver) return
         this.$parent.inGame = false
-        this.$parent.type = 'stop'
+        this.$emit('status-change', false, 'stop')
       },
       type() {
         if (this.type !== 'reset') return

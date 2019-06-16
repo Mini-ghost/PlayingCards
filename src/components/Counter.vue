@@ -7,6 +7,8 @@
 	.counter
 		margin: 2rem 0
 		color: rgba(white, 0.75)
+		@media (max-width: 767.89px)
+			text-align: center
 </style>
 
 
