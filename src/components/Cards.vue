@@ -340,7 +340,7 @@
         setTimeout(() => { this.cardsShuffleHandler(this.cardsData) }, needDelay? 500 : 0)
         this.activeCards = new Array
         this.activeIndex = new Array
-        this.$emit('status-change', false, 'shuffle')
+        this.$emit('status-change', false, 'stop')
       }
     },
     watch: {

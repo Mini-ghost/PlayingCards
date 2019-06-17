@@ -107,6 +107,7 @@ export default {
 		leavleSelectHandler(res) {
 			if(this.type === 'start') return
 			this.$emit('leavl-change', res)
+			this.$emit('status-change', false, 'reset')
 		}
 	},
 	computed: {

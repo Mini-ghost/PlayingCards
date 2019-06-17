@@ -33,13 +33,13 @@ export default {
   },
   data() {
     return {
-      inGame: false,
-      type: 'stop',
+      inGame: false,  // 遊戲是否開始
+      type: 'stop',   // 遊戲狀態 => start / stop / reset
       leavles: [
-				{ rank: 'easily', text: '簡單', num: 3, type: true},
-				{ rank: 'general', text: '中等', num: 6, type: false},
+				{ rank: 'easily', text: '簡單', num: 3, type: false},
+				{ rank: 'general', text: '中等', num: 6, type: true},
         { rank: 'difficult', text: '困難', num: 9, type: false},
-        { rank: 'varyDifficult', text: '最困難', num: 9, type: false}
+        { rank: 'varyDifficult', text: '最困難', num: 13, type: false}
       ],
     }
   },
