@@ -8,11 +8,14 @@
                   @status-change="statusChangeHandler")
           Controller( :status="inGame", 
                       :type="type", 
-                      @status-change="statusChangeHandler")
+                      :leavles="leavles",
+                      @status-change="statusChangeHandler",
+                      @leavl-change="leavlChangeHandler")
         .containt
           Cards(:status="inGame", 
                 :type="type", 
-                @status-change="statusChangeHandler")
+                :leavles="leavles",
+                @status-change="statusChangeHandler",)
 </template>
 
 <script>
@@ -31,13 +34,24 @@ export default {
   data() {
     return {
       inGame: false,
-      type: 'stop'
+      type: 'stop',
+      leavles: [
+				{ rank: 'easily', text: '簡單', num: 3, type: true},
+				{ rank: 'general', text: '中等', num: 6, type: false},
+        { rank: 'difficult', text: '困難', num: 9, type: false},
+        { rank: 'varyDifficult', text: '最困難', num: 9, type: false}
+      ],
     }
   },
   methods: {
     statusChangeHandler(inGame, type) {
       this.inGame = inGame
       this.type = type
+    },
+    leavlChangeHandler(data){
+      this.leavles.forEach(obj => {
+        obj.type = (obj.rank === data)? true : false;
+      })
     }
   }
 }

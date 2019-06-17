@@ -1,8 +1,10 @@
 <template lang="pug">
 .controller
 	.controller-containt
-		//- .controller-content.fz-12
-			button.controller__button(v-for="leavle in leavles") {{leavle.text}}
+		.controller-content.fz-12(:class="status? 'controller-content--enable':''")
+			button.controller__button(v-for="leavle in leavles",
+																@click="leavleSelectHandler(leavle.rank)"
+																:class="[leavle.type? 'controller__button--active' : '']") {{leavle.text}}
 		.controller-content.fz-14
 			button.controller__button(v-for="btn in buttonComputed", 
 			:class="'controller__button--' + btn.type", 
@@ -21,6 +23,13 @@
 .controller
 	@media (max-width: 767.89px)
 		text-align: center
+	&-content
+		&--enable
+			transition: opacity 0.5s
+			opacity: 0.5
+	// 遊戲開始後，某些按鈕不能被使用
+	&-content--enable &__button
+		cursor: not-allowed
 	&-content + &-content
 		margin-top: 16px
 	&__button + &__button
@@ -45,6 +54,11 @@
 			+buttonInit(map-get($color, 'mainRed'))
 		&--reset
 			+buttonInit(black)
+		&--active
+			color: black
+			background-color: white
+			border-color: white
+			opacity: 1
 		&:hover
 			opacity: 1
 
@@ -61,6 +75,10 @@ export default {
 		type: {
 			type: String,
 			required: true
+		},
+		leavles: {
+			type: Array,
+			required: true
 		}
 	},
 	data() {
@@ -69,11 +87,6 @@ export default {
 				{ text: '開始遊戲', type: 'start'},
 				{ text: '遊戲暫停', type: 'stop'},
 				{ text: '重新洗牌', type: 'reset'},
-			],
-			leavles: [
-				{ rank: 'easily', text: '簡單', num: 3},
-				{ rank: 'general', text: '中等', num: 6},
-				{ rank: 'difficult', text: '困難', num: 13}
 			]
 		}
 	},
@@ -90,6 +103,10 @@ export default {
 					this.$emit('status-change', false, res)			
 					break	
 			}
+		},
+		leavleSelectHandler(res) {
+			if(this.type === 'start') return
+			this.$emit('leavl-change', res)
 		}
 	},
 	computed: {

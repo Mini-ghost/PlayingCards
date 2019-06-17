@@ -5,6 +5,7 @@
                     :class="item.active? 'card-containt--active' : ''", 
                     :key="item.name + item.text")
       .card-face
+        //- 正片
         .card-face__front(:class="['card-face__front--'+item.name, 'card-face__front--'+item.color]")
           .card-face__wrap
             .card-face__corner.card-face__corner--top.fz-24
@@ -17,6 +18,7 @@
                                   :class="[{'card-face__symbol--flip' : symbol.flip}, item.text === 'A'? 'fz-72' : 'fz-36'] ")
             .card-face__center(v-else)
               .card-face__text.fz-52 {{item.text}}
+        //- 背面
         .card-face__back
           .card-face__wrap
     .card-clear(key='clear')
@@ -150,11 +152,15 @@
       type: {
         type: String,
         required: true
+      },
+      leavles: {
+        type: Array,
+        required: true
       }
     },
     data () {
       return {
-        quantity: 3,
+        quantity: this.quantityInitHandler(),
         items: [
           { name: 'spades', color: 'black' },
           { name: 'hearts', color: 'red' },
@@ -170,6 +176,10 @@
       this.cardsData = this.cardsCreateHandler()
     },
     methods: {
+      quantityInitHandler() {
+        let typeData = this.leavles.filter(obj => (obj.type === true))
+        return typeData[0].num
+      },
       cardsSymbolsHandler(num) {
         switch (num) {
           case 0:
@@ -328,6 +338,13 @@
       type() {
         if (this.type !== 'reset') return
         this.resetCardHanler(false)
+      },
+      leavles: {
+        handler() {
+          this.quantity = this.quantityInitHandler()
+          this.cardsData = this.cardsCreateHandler()
+        },
+        deep: true
       }
     }
   }
