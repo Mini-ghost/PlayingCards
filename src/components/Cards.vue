@@ -1,13 +1,14 @@
 <template lang="pug">
   transition-group(class="card", tag="div", name="shuffle")
     .card-containt( v-for="(item, index) in cardsData", 
-                    @click="selectHandler(item)", 
+                    @click="selectHandler(item, index)", 
                     :class="item.active? 'card-containt--active' : ''", 
                     :key="item.name + item.text")
       .card-face
         //- 正片
-        .card-face__front(:class="['card-face__front--'+item.name, 'card-face__front--'+item.color]")
-          .card-face__wrap
+        .card-face__front
+          .card-face__wrap( :class="['card-face__wrap--'+item.name, 'card-face__wrap--'+item.color]"
+                            v-if="item.show")
             .card-face__corner.card-face__corner--top.fz-24
               .card-num {{item.text}}
             .card-face__corner.card-face__corner--bottom.fz-24
@@ -86,6 +87,7 @@
         height: 100%
       &__front
         transform: rotateY(180deg)
+      &__wrap
         &--black
         &--red
           color: map-get($color, 'mainRed')
@@ -169,6 +171,7 @@
         ],
         cardsData: new Object,
         activeCards: new Array,
+        activeIndex: new Array,
         isGameOver: false
       }
     },
@@ -295,6 +298,7 @@
             obj.text = this.cardsNumberHandler(j)
             obj.symbols = this.cardsSymbolsHandler(j)
             obj.active = false
+            obj.show = false
             cardArray.push(obj)
           }
           
@@ -302,21 +306,30 @@
         this.cardsShuffleHandler(cardArray)
         return cardArray
       },
-      selectHandler(item) {
-        var activeCards = this.activeCards
+      selectHandler(item, index) {
+        var activeCards = this.activeCards,
+            activeIndex = this.activeIndex;
         if (!this.status) return // 母物件狀態
-        if (item.active || activeCards.length === 2) return // 牌已經被翻開 || 點滿兩張牌
-        item.active = !item.active
+        if (item.active || activeIndex.length === 2) return // 牌已經被翻開 || 點滿兩張牌
+        item.active = true
+        item.show = true
         activeCards.push(item)
-        if (activeCards.length < 2) return	// 條件成立才會往下繼續做
+        activeIndex.push(index)
+        if (activeIndex.length < 2) return	// 條件成立才會往下繼續做
         if (activeCards[0].num === activeCards[1].num) {
           activeCards.length = 0
+          activeIndex.length = 0
         }
         else {
           setTimeout(() => {
             activeCards[0].active = false
             activeCards[1].active = false
             activeCards.length = 0
+            setTimeout(() => {
+              this.cardsData[activeIndex[0]].show = false
+              this.cardsData[activeIndex[1]].show = false
+              activeIndex.length = 0
+            }, 400)
           }, 1000)
         }
         this.isGameOver = this.cardsData.every(obj => { return obj.active })
@@ -326,6 +339,7 @@
         this.cardsData.forEach(obj => { obj.active = res })
         setTimeout(() => { this.cardsShuffleHandler(this.cardsData) }, needDelay? 500 : 0)
         this.activeCards = new Array
+        this.activeIndex = new Array
         this.$emit('status-change', false, 'shuffle')
       }
     },
