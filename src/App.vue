@@ -2,26 +2,29 @@
   #app
     main
       section
-        .tool
-          Counter(:status="inGame", 
-                  :type="type", 
-                  @status-change="statusChangeHandler")
-          Controller( :status="inGame", 
-                      :type="type", 
-                      :leavles="leavles",
-                      @status-change="statusChangeHandler",
-                      @leavl-change="leavlChangeHandler")
         .containt
+          .tool
+            Counter(:status="inGame", 
+                    :type="type", 
+                    @status-change="statusChangeHandler")
+            Controller( :status="inGame", 
+                        :type="type", 
+                        :leavles="leavles",
+                        @status-change="statusChangeHandler",
+                        @leavl-change="leavlChangeHandler")
+          Tips
           Cards(:status="inGame", 
                 :type="type", 
                 :leavles="leavles",
                 @status-change="statusChangeHandler",)
+        
 </template>
 
 <script>
 import Cards from './components/Cards'
 import Counter from './components/Counter'
 import Controller from './components/Controller'
+import Tips from './components/Tips'
 
 
 export default {
@@ -29,7 +32,8 @@ export default {
   components: {
     Cards,
     Counter,
-    Controller
+    Controller,
+    Tips
   },
   data() {
     return {
@@ -39,7 +43,7 @@ export default {
 				{ rank: 'easily', text: '簡單', num: 3, type: false},
 				{ rank: 'general', text: '中等', num: 6, type: true},
         { rank: 'difficult', text: '困難', num: 9, type: false},
-        { rank: 'varyDifficult', text: '最困難', num: 13, type: false}
+        { rank: 'varyDifficult', text: '最難', num: 13, type: false}
       ],
     }
   },
@@ -70,18 +74,43 @@ html
   background-color: map-get($color, 'main')
   user-select: none
 .fz
-  &-72
-    font-size: rem(72px) 
-  &-52
-    font-size: rem(52px)
-  &-36
-    font-size: rem(36px)
-  &-24
-    font-size: rem(24px)
-  &-14
-    font-size: rem(14px)
-  &-12
-    font-size: rem(12px)
+  &
+    &-72
+      font-size: rem(72px) 
+    &-52
+      font-size: rem(52px)
+    &-36
+      font-size: rem(36px)
+    &-24
+      font-size: rem(24px)
+    &-14
+      font-size: rem(14px)
+    &-12
+      font-size: rem(12px)
+  &-mm
+    @media (max-width: 767.98px)
+      &-72
+        font-size: rem(72px) 
+      &-52
+        font-size: rem(52px)
+      &-36
+        font-size: rem(36px)
+      &-24
+        font-size: rem(24px)
+      &-14
+        font-size: rem(14px)
+      &-12
+        font-size: rem(12px)
+  &-ms
+    @media (max-width: 666.98px)
+      &-52
+        font-size: rem(52px)
+      &-36
+        font-size: rem(36px)
+      &-24
+        font-size: rem(24px)
+      &-18
+        font-size: rem(18px)
 
 .containt
   max-width: 1366px

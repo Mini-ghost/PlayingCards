@@ -9,14 +9,14 @@
         .card-face__front
           .card-face__wrap( :class="['card-face__wrap--'+item.name, 'card-face__wrap--'+item.color]"
                             v-if="item.show")
-            .card-face__corner.card-face__corner--top.fz-24
+            .card-face__corner.card-face__corner--top.fz-24.fz-mm-14.fz-ms-18
               .card-num {{item.text}}
-            .card-face__corner.card-face__corner--bottom.fz-24
+            .card-face__corner.card-face__corner--bottom.fz-24.fz-mm-14.fz-ms-18
               .card-num {{item.text}}
             .card-face__center(v-if="item.symbols")
               .card-face__symbol(v-for="symbol in item.symbols",
                                   :style="'left:' + symbol.left +'; top:' + symbol.top + ';'",
-                                  :class="[{'card-face__symbol--flip' : symbol.flip}, item.text === 'A'? 'fz-72' : 'fz-36'] ")
+                                  :class="[{'card-face__symbol--flip' : symbol.flip}, item.text === 'A'? 'fz-72 fz-mm-36 fz-ms-52' : 'fz-36 fz-mm-24'] ")
             .card-face__center(v-else)
               .card-face__text.fz-52 {{item.text}}
         //- 背面
@@ -32,7 +32,7 @@
   .card
     margin: 
       top: 10vw
-      bottom: 10vw
+      bottom: 5vw
       left: -0.5vw
       right: -0.5vw
     font-family: 'Source Serif Pro', serif
@@ -43,7 +43,7 @@
     &-containt
       float: left
       position: relative
-      top: 0
+      top: 0vw
       width: calc(16.667% - 1vw)
       margin: 0.5vw
       cursor: pointer
@@ -53,7 +53,7 @@
         width: calc(20% - 1vw)
       @media (max-width: 1023.98px)
         width: calc(25% - 1vw)
-      @media (max-width: 767.98px)
+      @media (max-width: 666.98px)
         width: calc(50% - 2vw)
         margin: 1vw
       &#{&}--active .card-face__front
@@ -81,6 +81,8 @@
         padding: 8px
         border-radius: 6px
         box-shadow: 0 10px 20px rgba(black, 0.2)
+        @media (max-width: 767.98px)
+          padding: 6px
       &__front &__wrap, &__back &__wrap
         position: relative
         width: 100%
@@ -329,7 +331,7 @@
               this.cardsData[activeIndex[0]].show = false
               this.cardsData[activeIndex[1]].show = false
               activeIndex.length = 0
-            }, 400)
+            }, 100)
           }, 1000)
         }
         this.isGameOver = this.cardsData.every(obj => { return obj.active })

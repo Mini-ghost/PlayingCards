@@ -35,7 +35,7 @@
 	&__button + &__button
 		margin-left: 0.5vw
 		@media (max-width: 767.89px)
-			margin-left: 2vw
+			margin-left: 1.5vw
 	&__button
 		background-color: rgba(black, 0.5)
 		border: 2px solid
@@ -48,6 +48,8 @@
 		opacity: 0.75
 		color: white  
 		box-shadow: 0 0 10px rgba(black, 0.5)
+		@media (max-width: 419.89px)
+			padding: 10px 15px
 		&--start
 			+buttonInit
 		&--stop
