@@ -177,7 +177,7 @@
         isGameOver: false
       }
     },
-    mounted(){
+    mounted() {
       this.cardsData = this.cardsCreateHandler()
     },
     methods: {
@@ -349,7 +349,7 @@
       isGameOver() {
         if (!this.isGameOver) return
         this.$parent.inGame = false
-        this.$emit('status-change', false, 'stop')
+        this.$emit('status-change', false, 'success')
       },
       type() {
         if (this.type !== 'reset') return

@@ -16,14 +16,16 @@
           Cards(:status="inGame", 
                 :type="type", 
                 :leavles="leavles",
-                @status-change="statusChangeHandler",)
-        
+                @status-change="statusChangeHandler")
+      Scoreboard( v-if="type === 'success'", 
+                  :leavle-on="leavleOn")
 </template>
 
 <script>
 import Cards from './components/Cards'
 import Counter from './components/Counter'
 import Controller from './components/Controller'
+import Scoreboard from './components/Scoreboard'
 import Tips from './components/Tips'
 
 
@@ -33,18 +35,19 @@ export default {
     Cards,
     Counter,
     Controller,
+    Scoreboard,
     Tips
   },
   data() {
     return {
       inGame: false,  // 遊戲是否開始
-      type: 'stop',   // 遊戲狀態 => start / stop / reset
+      type: 'stop',   // 遊戲狀態 => start / stop / reset / success
       leavles: [
 				{ rank: 'easily', text: '簡單', num: 3, type: false},
 				{ rank: 'general', text: '中等', num: 6, type: true},
         { rank: 'difficult', text: '困難', num: 9, type: false},
         { rank: 'varyDifficult', text: '最難', num: 13, type: false}
-      ],
+      ]
     }
   },
   methods: {
@@ -56,6 +59,11 @@ export default {
       this.leavles.forEach(obj => {
         obj.type = (obj.rank === data)? true : false;
       })
+    }
+  },
+  computed: {
+    leavleOn(){
+      return this.leavles.find(obj => (obj.type === true))
     }
   }
 }

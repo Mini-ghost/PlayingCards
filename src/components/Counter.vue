@@ -51,10 +51,14 @@ export default {
 	watch: {
 		type() {
 			if (this.status && this.type ==='start') { this.timerHandler() }
+			else if(this.type === 'success') {
+				clearTimeout(this.timerId)
+					this.$bus.$emit('successEvent', this.timeText)
+			}
 			else {
 				clearTimeout(this.timerId)
 				if (this.type === 'stop') return
-				/* --- 如果是重新設定，執行以下動作 --- */
+				// 如果是重新設定，執行以下動作
 				// 計時器初始化
 				this.sec = 0
 				this.timeText = ['00', '00']
