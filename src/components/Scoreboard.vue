@@ -36,7 +36,8 @@ export default {
 	},
 	methods: {
 		scoreTimeHandler(time) {
-			let timeText = time.join('\:')
+			let timeText = time[0].join('\:'),
+					sec = time[1];
 			let timestamp = +new Date(),
 					path = `${this.leavleOn.rank}/${timestamp}`,
 					dataBace = firebase.database(),
@@ -45,13 +46,12 @@ export default {
 
 			uploadPath.set({
 				score: timeText,
+				sec: sec,
 				timestamp: timestamp
 			})
 			downloadPath.once('value').then(snapshot => {
 				let data = this.fireBaseData = snapshot.val()
-				for(let item in data){
-					this.scoreData.push(data[item])
-				}
+				for(let item in data){ this.scoreData.push(data[item]) }
 			})
 		}
 	}

@@ -53,7 +53,7 @@ export default {
 			if (this.status && this.type ==='start') { this.timerHandler() }
 			else if(this.type === 'success') {
 				clearTimeout(this.timerId)
-					this.$bus.$emit('successEvent', this.timeText)
+					this.$bus.$emit('successEvent', [this.timeText, this.sec])
 			}
 			else {
 				clearTimeout(this.timerId)
