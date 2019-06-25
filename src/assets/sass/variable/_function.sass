@@ -4,3 +4,8 @@
     @if (unitless($context))
         $context: $context * 1px
     @return $pixels / $context * 1rem
+
+//---
+    
+@function getColor($c)
+    @return map-get($color, $c)

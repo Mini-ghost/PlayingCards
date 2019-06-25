@@ -1,7 +1,7 @@
 <template lang="pug">
   #app
     main
-      section
+      section#game
         .containt
           .tool
             Counter(:status="inGame", 
@@ -17,8 +17,10 @@
                 :type="type", 
                 :leavles="leavles",
                 @status-change="statusChangeHandler")
-      Scoreboard( v-if="type === 'success'", 
+      Scoreboard( v-if="type === 'success'",
+                  @status-change="statusChangeHandler",
                   :leavle-on="leavleOn")
+
 </template>
 
 <script>
@@ -43,8 +45,8 @@ export default {
       inGame: false,  // 遊戲是否開始
       type: 'stop',   // 遊戲狀態 => start / stop / reset / success
       leavles: [
-				{ rank: 'easily', text: '簡單', num: 3, type: false},
-				{ rank: 'general', text: '中等', num: 6, type: true},
+				{ rank: 'easily', text: '簡單', num: 3, type: true},
+				{ rank: 'general', text: '中等', num: 6, type: false},
         { rank: 'difficult', text: '困難', num: 9, type: false},
         { rank: 'varyDifficult', text: '最難', num: 13, type: false}
       ]
@@ -105,6 +107,8 @@ html
         font-size: rem(36px)
       &-24
         font-size: rem(24px)
+      &-16
+        font-size: rem(16px)
       &-14
         font-size: rem(14px)
       &-12
@@ -120,7 +124,7 @@ html
       &-18
         font-size: rem(18px)
 
-.containt
+#game > .containt
   max-width: 1366px
   width: 80%
   margin: 0 auto
