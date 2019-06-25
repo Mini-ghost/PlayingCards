@@ -136,260 +136,9 @@ export default {
 	},
 	data() {
 		return {
-			fireBaseData: {
-
-				"1561428058946" : {
-					"score" : "00:18",
-					"sec" : 19,
-					"timestamp" : 1561428058946
-				},
-				"1561428405612" : {
-					"score" : "00:27",
-					"sec" : 28,
-					"timestamp" : 1561428405612
-				},
-				"1561429115530" : {
-					"score" : "00:15",
-					"sec" : 16,
-					"timestamp" : 1561429115530
-				},
-				"1561429164697" : {
-					"score" : "00:19",
-					"sec" : 20,
-					"timestamp" : 1561429164697
-				},
-				"1561429206316" : {
-					"score" : "00:24",
-					"sec" : 25,
-					"timestamp" : 1561429206316
-				},
-				"1561429312040" : {
-					"score" : "00:17",
-					"sec" : 18,
-					"timestamp" : 1561429312040
-				},
-				"1561429350775" : {
-					"score" : "00:16",
-					"sec" : 17,
-					"timestamp" : 1561429350775
-				},
-				"1561429477351" : {
-					"score" : "00:15",
-					"sec" : 16,
-					"timestamp" : 1561429477351
-				},
-				"1561429631553" : {
-					"score" : "00:16",
-					"sec" : 17,
-					"timestamp" : 1561429631553
-				},
-				"1561429663332" : {
-					"score" : "00:20",
-					"sec" : 21,
-					"timestamp" : 1561429663332
-				},
-				"1561429663825" : {
-					"score" : "00:24",
-					"sec" : 25,
-					"timestamp" : 1561429663825
-				},
-				"1561429683105" : {
-					"score" : "00:14",
-					"sec" : 15,
-					"timestamp" : 1561429683105
-				},
-				"1561429702160" : {
-					"score" : "00:15",
-					"sec" : 16,
-					"timestamp" : 1561429702160
-				},
-				"1561429702161" : {
-					"score" : "00:15",
-					"sec" : 16,
-					"timestamp" : 1561429702161
-				},
-				"1561429702162" : {
-					"score" : "00:15",
-					"sec" : 16,
-					"timestamp" : 1561429702162
-				},
-				"1561429718577" : {
-					"score" : "00:14",
-					"sec" : 15,
-					"timestamp" : 1561429718577
-				},
-				"1561429724958" : {
-					"score" : "00:18",
-					"sec" : 19,
-					"timestamp" : 1561429724958
-				},
-				"1561429738345" : {
-					"score" : "00:18",
-					"sec" : 19,
-					"timestamp" : 1561429738345
-				},
-				"1561429759392" : {
-					"score" : "00:17",
-					"sec" : 18,
-					"timestamp" : 1561429759392
-				},
-				"1561429759393" : {
-					"score" : "00:17",
-					"sec" : 18,
-					"timestamp" : 1561429759393
-				},
-				"1561429759396" : {
-					"score" : "00:17",
-					"sec" : 18,
-					"timestamp" : 1561429759396
-				},
-				"1561429801730" : {
-					"score" : "00:19",
-					"sec" : 20,
-					"timestamp" : 1561429801730
-				},
-				"1561429801736" : {
-					"score" : "00:19",
-					"sec" : 20,
-					"timestamp" : 1561429801736
-				},
-				"1561429822528" : {
-					"score" : "00:13",
-					"sec" : 14,
-					"timestamp" : 1561429822528
-				},
-				"1561429822532" : {
-					"score" : "00:13",
-					"sec" : 14,
-					"timestamp" : 1561429822532
-				},
-				"1561429841523" : {
-					"score" : "00:13",
-					"sec" : 14,
-					"timestamp" : 1561429841523
-				},
-				"1561429841524" : {
-					"score" : "00:13",
-					"sec" : 14,
-					"timestamp" : 1561429841524
-				},
-				"1561429863097" : {
-					"score" : "00:14",
-					"sec" : 15,
-					"timestamp" : 1561429863097
-				},
-				"1561429863103" : {
-					"score" : "00:14",
-					"sec" : 15,
-					"timestamp" : 1561429863103
-				},
-				"1561429884464" : {
-					"score" : "00:14",
-					"sec" : 15,
-					"timestamp" : 1561429884464
-				},
-				"1561429884472" : {
-					"score" : "00:14",
-					"sec" : 15,
-					"timestamp" : 1561429884472
-				},
-				"1561429905400" : {
-					"score" : "00:18",
-					"sec" : 19,
-					"timestamp" : 1561429905400
-				},
-				"1561429924056" : {
-					"score" : "00:16",
-					"sec" : 17,
-					"timestamp" : 1561429924056
-				},
-				"1561430819457" : {
-					"score" : "00:11",
-					"sec" : 12,
-					"timestamp" : 1561430819457
-				},
-				"1561431383100" : {
-					"score" : "00:16",
-					"sec" : 17,
-					"timestamp" : 1561431383100
-				},
-				"1561431458908" : {
-					"score" : "00:16",
-					"sec" : 17,
-					"timestamp" : 1561431458908
-				},
-				"1561431683417" : {
-					"score" : "00:20",
-					"sec" : 21,
-					"timestamp" : 1561431683417
-				},
-				"1561431729024" : {
-					"score" : "00:23",
-					"sec" : 24,
-					"timestamp" : 1561431729024
-				},
-				"1561432009895" : {
-					"score" : "00:16",
-					"sec" : 17,
-					"timestamp" : 1561432009895
-				},
-				"1561432033587" : {
-					"score" : "00:17",
-					"sec" : 18,
-					"timestamp" : 1561432033587
-				},
-				"1561432235409" : {
-					"score" : "00:12",
-					"sec" : 13,
-					"timestamp" : 1561432235409
-				},
-				"1561432407193" : {
-					"score" : "00:12",
-					"sec" : 13,
-					"timestamp" : 1561432407193
-				},
-				"1561432407194" : {
-					"score" : "00:12",
-					"sec" : 13,
-					"timestamp" : 1561432407194
-				},
-				"1561432721336" : {
-					"score" : "00:12",
-					"sec" : 13,
-					"timestamp" : 1561432721336
-				},
-				"1561432749731" : {
-					"score" : "00:14",
-					"sec" : 15,
-					"timestamp" : 1561432749731
-				},
-				"1561432783563" : {
-					"score" : "00:16",
-					"sec" : 17,
-					"timestamp" : 1561432783563
-				},
-				"1561433113570" : {
-					"score" : "00:14",
-					"sec" : 15,
-					"timestamp" : 1561433113570
-				},
-				"1561433714411" : {
-					"score" : "00:22",
-					"sec" : 23,
-					"timestamp" : 1561433714411
-				},
-				"1561434049885" : {
-					"score" : "00:15",
-					"sec" : 16,
-					"timestamp" : 1561434049885
-				}
-  
-			},
+			fireBaseData: new Object,
 			scoreData: new Array,
-			userData: {
-				score: null,
-				timestamp: null
-			}
+			userData: new Object
 		}
 	},
 	mounted() {
@@ -408,14 +157,11 @@ export default {
 			// 傳一份資料給自己
 			this.userData = {
 				score: timeText,
+				sec: sec,
 				timestamp: timestamp
 			}
 			// 傳一份資料到資料庫
-			uploadPath.set({
-				score: timeText,
-				sec: sec,
-				timestamp: timestamp
-			})
+			uploadPath.set(this.userData)
 
 			downloadPath.once('value').then(snapshot => {
 				let data = this.fireBaseData = snapshot.val()
@@ -423,7 +169,8 @@ export default {
 				this.scoreData = this.scoreData.sort((a, b) => {
 					return a.sec - b.sec
 				})
-				this.scoreData.length = 10
+
+				if(this.scoreData.length > 10) { this.scoreData.length = 10 }
 			})
 		},
 		getDateHandler(date) {
